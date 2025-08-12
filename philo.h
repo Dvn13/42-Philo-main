@@ -67,6 +67,8 @@ int					is_simulation_end(t_data *data);
 
 int					init_data(t_data *data);
 int					init_table(t_table *table);
+int					init_philosopher_mutexes(t_table *table, int i);
+int					init_philosophers(t_table *table);
 void				assign_forks(t_table *table);
 
 int					start_simulation(t_table *table);
@@ -80,6 +82,7 @@ void				eat(t_philo *philo);
 void				sleep_and_think(t_philo *philo);
 
 void				cleanup_table(t_table *table);
+void				cleanup_philosopher_mutexes(t_table *table, int count);
 void				destroy_mutexes(t_table *table);
 int					handle_single_philosopher(t_table *table);
 int					create_threads(t_table *table);

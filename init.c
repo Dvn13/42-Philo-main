@@ -51,7 +51,23 @@ static int	init_forks(t_table *table)
 	return (SUCCESS);
 }
 
-static int	init_philosophers(t_table *table)
+int	init_philosopher_mutexes(t_table *table, int i)
+{
+	if (pthread_mutex_init(&table->philos[i].meal_mutex, NULL) != 0)
+	{
+		cleanup_philosopher_mutexes(table, i);
+		return (ERROR);
+	}
+	if (pthread_mutex_init(&table->philos[i].last_meal_mutex, NULL) != 0)
+	{
+		pthread_mutex_destroy(&table->philos[i].meal_mutex);
+		cleanup_philosopher_mutexes(table, i);
+		return (ERROR);
+	}
+	return (SUCCESS);
+}
+
+int	init_philosophers(t_table *table)
 {
 	int	i;
 
@@ -65,27 +81,11 @@ static int	init_philosophers(t_table *table)
 		table->philos[i].meals_eaten = 0;
 		table->philos[i].last_meal_time = table->data->start_time;
 		table->philos[i].data = table->data;
-		if (pthread_mutex_init(&table->philos[i].meal_mutex, NULL) != 0)
-			return (ERROR);
-		if (pthread_mutex_init(&table->philos[i].last_meal_mutex, NULL) != 0)
+		if (init_philosopher_mutexes(table, i) == ERROR)
 			return (ERROR);
 		i++;
 	}
 	return (SUCCESS);
-}
-
-void	assign_forks(t_table *table)
-{
-	int	i;
-
-	i = 0;
-	while (i < table->data->philo_count)
-	{
-		table->philos[i].left_fork = &table->forks[i];
-		table->philos[i].right_fork = &table->forks[(i + 1)
-			% table->data->philo_count];
-		i++;
-	}
 }
 
 int	init_table(t_table *table)

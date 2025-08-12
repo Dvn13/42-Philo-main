@@ -73,3 +73,17 @@ void	sleep_and_think(t_philo *philo)
 	if (philo->data->philo_count % 2 == 1 && philo->data->philo_count > 3)
 		usleep(1000);
 }
+
+void	assign_forks(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->data->philo_count)
+	{
+		table->philos[i].left_fork = &table->forks[i];
+		table->philos[i].right_fork = &table->forks[(i + 1)
+			% table->data->philo_count];
+		i++;
+	}
+}
