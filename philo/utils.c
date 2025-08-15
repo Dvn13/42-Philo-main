@@ -6,11 +6,21 @@
 /*   By: mdivan <mdivan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:31:32 by mdivan            #+#    #+#             */
-/*   Updated: 2025/08/12 16:31:36 by mdivan           ###   ########.fr       */
+/*   Updated: 2025/08/15 14:02:52 by mdivan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+}
 
 long	get_current_time(void)
 {
@@ -44,7 +54,7 @@ void	print_status(t_philo *philo, char *status)
 	{
 		timestamp = get_current_time() - philo->data->start_time;
 		printf("%ld %d %s\n", timestamp, philo->id, status);
-		if (strcmp(status, "died") == 0)
+		if (ft_strcmp(status, "died") == 0)
 		{
 			pthread_mutex_lock(&philo->data->dead_mutex);
 			philo->data->simulation_end = 1;

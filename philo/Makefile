@@ -7,9 +7,6 @@ RM = rm -rf
 SOURCES = main.c parsing.c utils.c init.c simulation.c actions.c cleanup.c monitor.c
 OBJECTS = $(SOURCES:.c=.o)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
 $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
 

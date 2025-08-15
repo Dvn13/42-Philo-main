@@ -6,7 +6,7 @@
 /*   By: mdivan <mdivan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:31:51 by mdivan            #+#    #+#             */
-/*   Updated: 2025/08/12 16:31:54 by mdivan           ###   ########.fr       */
+/*   Updated: 2025/08/15 13:48:49 by mdivan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
 
