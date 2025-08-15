@@ -6,7 +6,7 @@
 /*   By: mdivan <mdivan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:32:11 by mdivan            #+#    #+#             */
-/*   Updated: 2025/08/12 16:32:13 by mdivan           ###   ########.fr       */
+/*   Updated: 2025/08/15 16:05:06 by mdivan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	validate_arguments(t_data *data)
 		printf("Error: Invalid time values\n");
 		return (ERROR);
 	}
-	if (data->must_eat_count < -1)
+	if (data->must_eat_count < -1 || data->must_eat_count == 0)
 	{
 		printf("Error: Invalid must eat count\n");
 		return (ERROR);
